@@ -5,7 +5,7 @@ import Data.List (isPrefixOf)
 data SourceControl = Git
                    | Mercurial
                    | Subversion
-                   deriving (Show)
+                   deriving (Show, Eq)
 
 clone :: SourceControl -> String
 clone Git = "git clone"
@@ -17,8 +17,12 @@ update Git = ["git pull"]
 update Mercurial = ["hg pull", "hg update"]
 update Subversion = undefined
 
-getSourceControl :: String -> (SourceControl, String)
+getSourceControl :: String -> (SourceControl, String, String)
 getSourceControl str
-    | "[git]" `isPrefixOf` str = (Git , tail str)
-    | "[hg]" `isPrefixOf` str = (Mercurial, tail str)
-    | otherwise = undefined
+    | "[git]" `isPrefixOf` str = (Git , link, path)
+    | "[hg]" `isPrefixOf` str = (Mercurial, link, path)
+    | "[subversion]" `isPrefixOf` str = (Subversion, link, path)
+    | otherwise = error "Not implemented yet"
+    where link = head $ tail w
+          path = last w
+          w = words str
