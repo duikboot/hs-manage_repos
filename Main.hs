@@ -1,8 +1,11 @@
-
 module Main where
+
+import RevCommands
 
 main ::  IO ()
 main = do
     file <- readFile "modules"
-    putStrLn file
+    let sourcecontrol = map getSourceControl $ lines file
+    print sourcecontrol
+    return ()
 
