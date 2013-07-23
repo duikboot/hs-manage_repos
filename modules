@@ -1,0 +1,2 @@
+[hg]  hg clone https://bitbucket.org/sjl/gundo.vim  test/gundo
+[git] https://github.com/mileszs/ack.vim.git        test/ack

@@ -1,0 +1,11 @@
+syntax: glob
+tags
+*.hi
+*.orig
+*.o
+*json
+*keys
+run
+vimlog
+.hsenv*
+hsenv.log
