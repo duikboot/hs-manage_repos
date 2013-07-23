@@ -8,6 +8,7 @@ data SourceControl = Git
 clone :: SourceControl -> String
 clone Git = "git clone"
 clone Mercurial = "hg clone"
+clone Subversion = undefined
 
 update :: SourceControl -> [String]
 update Git = ["git pull"]
