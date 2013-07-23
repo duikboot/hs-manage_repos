@@ -17,8 +17,8 @@ update Git = ["git pull"]
 update Mercurial = ["hg pull", "hg update"]
 update Subversion = undefined
 
-getSourceControl :: String -> SourceControl
+getSourceControl :: String -> (SourceControl, String)
 getSourceControl str
-    | "[git]" `isPrefixOf` str = Git
-    | "[hg]" `isPrefixOf` str = Mercurial
+    | "[git]" `isPrefixOf` str = (Git , tail str)
+    | "[hg]" `isPrefixOf` str = (Mercurial, tail str)
     | otherwise = undefined
