@@ -20,9 +20,15 @@ tests = TestList $ map TestCase
   ,assertEqual "Mercurial clone command" (clone Mercurial) "hg clone"
   ,assertEqual "Git update" (update Git) ["git pull"]
   ,assertEqual "Mercurial update command" (update Mercurial) ["hg pull", "hg update"]
-  ,assertEqual "test SourceControl" (getSourceControl git) (Git, "https://github.com/mileszs/ack.vim.git", "test/ack")
-  ,assertEqual "test SourceControl" (getSourceControl hg) (Mercurial, "https://bitbucket.org/sjl/gundo.vim", "test/gundo")
-  ,assertEqual "test SourceControl" (getSourceControl subversion) (Subversion, "https://github.com/mileszs/ack.vim.git", "test/ack")
+  ,assertEqual "test SourceControl"
+                (getSourceControl git)
+                (Git, "https://github.com/mileszs/ack.vim.git", "test/ack")
+  ,assertEqual "test SourceControl"
+                (getSourceControl hg)
+                (Mercurial, "https://bitbucket.org/sjl/gundo.vim", "test/gundo")
+  ,assertEqual "test SourceControl"
+                (getSourceControl subversion)
+                (Subversion, "https://github.com/mileszs/ack.vim.git", "test/ack")
   ]
 
 -- temporary placeholder for some real property tests
