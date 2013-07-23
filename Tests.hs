@@ -2,10 +2,13 @@
 import Test.HUnit
 import Test.QuickCheck
 
+import RevCommands
+
 tests ::  Test
 tests = TestList $ map TestCase
   [assertEqual "add tests here" 1 (1::Int)
-  ,assertEqual "Join" (joinList "##" ["aa", "bb", "cc"]) "aa##bb##cc"
+  ,assertEqual "Git command" (clone Git) "git clone"
+  ,assertEqual "Mercurial clone command" (clone Mercurial) "hg clone"
   ]
 
 -- temporary placeholder for some real property tests
