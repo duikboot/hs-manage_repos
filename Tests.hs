@@ -13,13 +13,13 @@ git = "git https://github.com/mileszs/ack.vim.git test/ack"
 subversion :: String
 subversion = "svn https://github.com/mileszs/ack.vim.git test/ack"
 
+someNonExistantVcs :: String
+someNonExistantVcs = "svn https://github.com/mileszs/ack.vim.git test/ack"
+
+
 tests ::  Test
 tests = TestList $ map TestCase
   [assertEqual "add tests here" 1 (1::Int)
-  ,assertEqual "Git command" (clone Git) "git clone"
-  ,assertEqual "Mercurial clone command" (clone Mercurial) "hg clone"
-  ,assertEqual "Git update" (update Git) ["git pull"]
-  ,assertEqual "Mercurial update command" (update Mercurial) ["hg pull", "hg update"]
   ,assertEqual "test SourceControl"
                 (getSourceControl git)
                 (Just Git, "https://github.com/mileszs/ack.vim.git", "test/ack")

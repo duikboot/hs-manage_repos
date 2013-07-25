@@ -1,6 +1,5 @@
 module RevCommands where
 
-import Data.List (isPrefixOf)
 
 data SourceControl = Git
                    | Mercurial
@@ -9,24 +8,32 @@ data SourceControl = Git
                    | Bazaar
                    deriving (Show, Eq)
 
+type Path = String
+type Link = String
+
 vcMap ::  [(String, SourceControl)]
 vcMap = [("git", Git), ("hg", Mercurial), ("svn", Subversion)]
 
-clone :: SourceControl -> String
-clone Git = "git clone"
-clone Mercurial = "hg clone"
-clone _ = error "Not implemented yet"
+clone :: (Maybe SourceControl, Link, Path) -> String
+clone csv =
+    case csv of
+        (Just Git, link, path) ->  "git clone " ++ " " ++ link ++ " " ++ path
+        (Just Mercurial, link, path) -> "hg clone " ++ " " ++ link ++ " " ++ path
+        _ -> error "Not implemeted yet"
 
-update :: SourceControl -> [String]
-update Git = ["git pull"]
-update Mercurial = ["hg pull", "hg update"]
-update _ = error "Not implemented yet"
+getUpdates ::  [(SourceControl, String)]
+getUpdates = [(Mercurial, "hg pull")]
 
-getSourceControl ::  String -> (Maybe SourceControl, String, String)
+update ::  [(SourceControl, String)]
+update = [(Git, "git pull"), (Mercurial, "hg update")]
+
+
+getSourceControl ::  String -> (Maybe SourceControl, Link, Path)
 getSourceControl str =
     (vcs, link, path)
     where link = head $ tail words'
           path = last words'
           words' = words str
-          s = head words'
-          vcs = lookup s vcMap
+          key = head words'
+          vcs = lookup key vcMap
+
