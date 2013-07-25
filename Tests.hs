@@ -5,13 +5,13 @@ import Test.QuickCheck
 import RevCommands
 
 hg :: String
-hg = "[hg] https://bitbucket.org/sjl/gundo.vim  test/gundo"
+hg = "hg https://bitbucket.org/sjl/gundo.vim  test/gundo"
 
 git :: String
-git = "[git] https://github.com/mileszs/ack.vim.git test/ack"
+git = "git https://github.com/mileszs/ack.vim.git test/ack"
 
 subversion :: String
-subversion = "[subversion] https://github.com/mileszs/ack.vim.git test/ack"
+subversion = "svn https://github.com/mileszs/ack.vim.git test/ack"
 
 tests ::  Test
 tests = TestList $ map TestCase
@@ -22,13 +22,13 @@ tests = TestList $ map TestCase
   ,assertEqual "Mercurial update command" (update Mercurial) ["hg pull", "hg update"]
   ,assertEqual "test SourceControl"
                 (getSourceControl git)
-                (Git, "https://github.com/mileszs/ack.vim.git", "test/ack")
+                (Just Git, "https://github.com/mileszs/ack.vim.git", "test/ack")
   ,assertEqual "test SourceControl"
                 (getSourceControl hg)
-                (Mercurial, "https://bitbucket.org/sjl/gundo.vim", "test/gundo")
+                (Just Mercurial, "https://bitbucket.org/sjl/gundo.vim", "test/gundo")
   ,assertEqual "test SourceControl"
                 (getSourceControl subversion)
-                (Subversion, "https://github.com/mileszs/ack.vim.git", "test/ack")
+                (Just Subversion, "https://github.com/mileszs/ack.vim.git", "test/ack")
   ]
 
 -- temporary placeholder for some real property tests

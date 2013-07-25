@@ -5,24 +5,28 @@ import Data.List (isPrefixOf)
 data SourceControl = Git
                    | Mercurial
                    | Subversion
+                   | Darcs
+                   | Bazaar
                    deriving (Show, Eq)
+
+vcMap ::  [(String, SourceControl)]
+vcMap = [("git", Git), ("hg", Mercurial), ("svn", Subversion)]
 
 clone :: SourceControl -> String
 clone Git = "git clone"
 clone Mercurial = "hg clone"
-clone Subversion = undefined
+clone _ = error "Not implemented yet"
 
 update :: SourceControl -> [String]
 update Git = ["git pull"]
 update Mercurial = ["hg pull", "hg update"]
-update Subversion = undefined
+update _ = error "Not implemented yet"
 
-getSourceControl :: String -> (SourceControl, String, String)
-getSourceControl str
-    | "[git]" `isPrefixOf` str = (Git , link, path)
-    | "[hg]" `isPrefixOf` str = (Mercurial, link, path)
-    | "[subversion]" `isPrefixOf` str = (Subversion, link, path)
-    | otherwise = error "Not implemented yet"
-    where link = head $ tail w
-          path = last w
-          w = words str
+getSourceControl ::  String -> (Maybe SourceControl, String, String)
+getSourceControl str =
+    (vcs, link, path)
+    where link = head $ tail words'
+          path = last words'
+          words' = words str
+          s = head words'
+          vcs = lookup s vcMap
