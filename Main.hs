@@ -1,17 +1,19 @@
 module Main where
 
-import System.Environment (getArgs)
+-- import System.Environment (getArgs)
 import RevCommands
-import System.Cmd
-import Control.Monad
+import System.Cmd (system)
 
 main ::  IO ()
 main = do
-    action <- getArgs
+    -- TODO: let user decide to do a update or clone
+    -- action <- getArgs
     file <- readFile "modules"
     let sourcecontrol = map getSourceControl $ lines file
     print sourcecontrol
     let a = map clone sourcecontrol
+    
+    -- execute the vcs commands
     mapM_ system a
     return ()
 
