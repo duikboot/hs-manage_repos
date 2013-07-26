@@ -15,8 +15,8 @@ vcMap ::  [(String, SourceControl)]
 vcMap = [("git", Git), ("hg", Mercurial), ("svn", Subversion)]
 
 clone :: (Maybe SourceControl, Link, Path) -> String
-clone csv =
-    case csv of
+clone vcs =
+    case vcs of
         (Just Git, link, path) ->  "git clone " ++ " " ++ link ++ " " ++ path
         (Just Mercurial, link, path) -> "hg clone " ++ " " ++ link ++ " " ++ path
         _ -> error "Not implemeted yet"
