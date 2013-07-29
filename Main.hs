@@ -7,13 +7,14 @@ main ::  IO ()
 main = do
     -- TODO: let user decide to do a update or clone
     -- action <- getArgs
-    (infile:_) <- getArgs
+    (infile:action:_) <- getArgs
     file <- readFile infile
-    let sourcecontrol = map getSourceControl $ lines file
+    -- let sourcecontrol = map getSourceControl $ map ((++) (action ++ " ")) $ lines file
+    let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) (lines file)
     print sourcecontrol
-    mapM_ execute sourcecontrol
-    -- let a = map execute sourcecontrol
-    -- print a
+    let a = map createCommandString sourcecontrol
+    print a
+    mapM_ execute a
     -- execute the vcs commands
     -- mapM_ system a
     return ()

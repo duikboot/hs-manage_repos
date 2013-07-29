@@ -23,6 +23,10 @@ vc "git" = Git
 vc "svn" = Subversion
 vc "hg"  = Mercurial
 
+actionMap "clone" = cloneMap
+actionMap "update" = updateMap
+actionMap "pull" = pullMap
+
 vcrev :: SourceControl -> String
 vcrev Git        = "git"  
 vcrev Subversion = "svn" 
@@ -40,24 +44,30 @@ updateMap = [(Git, "pull"), (Mercurial, "update")]
 -- execute vcs =
 --     case vcs of
 
+execute commandstring = 
+    rawSystem command args
+    where command = head commandstring
+          args    = tail commandstring
 
-execute (vcs, link, path) =
-    rawSystem vcs' args 
+createCommandString (vcs, action', link, path) =
+    -- rawSystem vcs' args 
+    vcs' : args 
     -- createProcess (proc vcs' args) 
     -- vcs' : args 
     -- action
-    where command = lookup vcs cloneMap
+    where command = lookup vcs $ actionMap action'
           vcs' = vcrev vcs
           action = fromMaybe "echo" command
           -- args = action : link : path : []
           args = [action , link , path]
 
-getSourceControl ::  String -> (SourceControl, String, String)
+getSourceControl ::  String -> (SourceControl, String, String, String)
 getSourceControl str =
-    (vcs, link, path)
-    where link = head $ tail words'
-          path = last words'
-          words' = words str
-          key = head words'
-          vcs = vc key 
+    (vcs, action, link, path)
+     where words'  = words str
+           action  = head words'
+           path    = last words'
+           link    = last $ init words'
+           key     = head $ tail words'
+           vcs     = vc key
 
