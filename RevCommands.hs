@@ -52,17 +52,6 @@ execute (vcs, link, path) =
           -- args = action : link : path : []
           args = [action , link , path]
 
-
-    -- | otherwise = rawSystem "git" ["clone", "https://github.com/mileszs/ack.vim.git", "test/ack"]
--- check :: (FilePath -> IO Bool) -> FilePath -> IO ()
-
--- check ::  FilePath -> IO ()
-check dir = do
-    result <- doesDirectoryExist dir
-    return False
-    -- putStrLn $ dir ++ if result then " does exist" else " does not exist"
-
-
 getSourceControl ::  String -> (SourceControl, String, String)
 getSourceControl str =
     (vcs, link, path)
