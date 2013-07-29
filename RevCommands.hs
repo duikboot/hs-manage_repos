@@ -18,11 +18,14 @@ type Path = String
 type Link = String
 type Command = String
 
+--TODO: Make interface for every vcs
+
 vc :: String -> SourceControl
 vc "git" = Git
 vc "svn" = Subversion
 vc "hg"  = Mercurial
 
+actionMap :: String -> [(SourceControl, Command)]
 actionMap "clone" = cloneMap
 actionMap "update" = updateMap
 actionMap "pull" = pullMap
@@ -49,6 +52,7 @@ execute commandstring =
     where command = head commandstring
           args    = tail commandstring
 
+createCommandString :: (SourceControl, Command, Link, Path) -> [String]
 createCommandString (vcs, action', link, path) =
     -- rawSystem vcs' args 
     vcs' : args 
@@ -61,7 +65,7 @@ createCommandString (vcs, action', link, path) =
           -- args = action : link : path : []
           args = [action , link , path]
 
-getSourceControl ::  String -> (SourceControl, String, String, String)
+getSourceControl ::  String -> (SourceControl, Command, Path, Link)
 getSourceControl str =
     (vcs, action, link, path)
      where words'  = words str
