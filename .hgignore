@@ -9,3 +9,4 @@ run
 vimlog
 .hsenv*
 hsenv.log
+test/*
