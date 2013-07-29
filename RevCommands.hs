@@ -1,5 +1,7 @@
 module RevCommands where
 
+import System.Cmd (rawSystem)
+import System.Directory (doesDirectoryExist)
 
 data SourceControl = Git
                    | Mercurial
@@ -10,22 +12,40 @@ data SourceControl = Git
 
 type Path = String
 type Link = String
+type Command = String
 
 vcMap ::  [(String, SourceControl)]
 vcMap = [("git", Git), ("hg", Mercurial), ("svn", Subversion)]
 
-clone :: (Maybe SourceControl, Link, Path) -> String
-clone vcs =
-    case vcs of
-        (Just Git, link, path)       - >  "git clone " ++ " " ++ link ++ " " ++ path
-        (Just Mercurial, link, path) - > "hg clone " ++ " " ++ link ++ " " ++ path
-        _ -> error "Not implemeted yet"
+cloneMap :: [(SourceControl, Command)]
+cloneMap = undefined
 
-getUpdates ::  [(SourceControl, String)]
-getUpdates = [(Mercurial, "hg pull")]
+pullMap :: [(SourceControl, Command)]
+pullMap = undefined
 
-update ::  [(SourceControl, String)]
-update = [(Git, "git pull"), (Mercurial, "hg update")]
+updateMap :: [(SourceControl, Command)]
+updateMap = undefined
+
+-- execute vcs =
+--     case vcs of
+
+clone vcs = undefined
+
+
+pull vcs = undefined
+
+update = undefined
+
+
+execute = undefined
+    -- | otherwise = rawSystem "git" ["clone", "https://github.com/mileszs/ack.vim.git", "test/ack"]
+-- check :: (FilePath -> IO Bool) -> FilePath -> IO ()
+
+-- check ::  FilePath -> IO ()
+check dir = do
+    result <- doesDirectoryExist dir
+    return False
+    -- putStrLn $ dir ++ if result then " does exist" else " does not exist"
 
 
 getSourceControl ::  String -> (Maybe SourceControl, Link, Path)
