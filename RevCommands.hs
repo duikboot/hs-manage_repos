@@ -1,7 +1,11 @@
 module RevCommands where
 
-import System.Cmd (rawSystem)
+import System.Cmd (rawSystem, system)
 import System.Directory (doesDirectoryExist)
+import System.Process
+import Control.Monad
+import Data.Tuple
+import Data.Maybe
 
 data SourceControl = Git
                    | Mercurial
@@ -14,30 +18,41 @@ type Path = String
 type Link = String
 type Command = String
 
-vcMap ::  [(String, SourceControl)]
-vcMap = [("git", Git), ("hg", Mercurial), ("svn", Subversion)]
+vc :: String -> SourceControl
+vc "git" = Git
+vc "svn" = Subversion
+vc "hg"  = Mercurial
+
+vcrev :: SourceControl -> String
+vcrev Git        = "git"  
+vcrev Subversion = "svn" 
+vcrev Mercurial  = "hg"   
 
 cloneMap :: [(SourceControl, Command)]
-cloneMap = undefined
+cloneMap = [(Git, "clone"), (Mercurial, "clone"), (Subversion, "checkout")]
 
 pullMap :: [(SourceControl, Command)]
-pullMap = undefined
+pullMap = [(Mercurial, "clone")]
 
 updateMap :: [(SourceControl, Command)]
-updateMap = undefined
+updateMap = [(Git, "pull"), (Mercurial, "update")]
 
 -- execute vcs =
 --     case vcs of
 
-clone vcs = undefined
+
+execute (vcs, link, path) =
+    rawSystem vcs' args 
+    -- createProcess (proc vcs' args) 
+    -- vcs' : args 
+    -- action
+    where command = lookup vcs cloneMap
+          vcs' = vcrev vcs
+          action = fromMaybe "echo" command
+          -- args = action : link : path : []
+          args = [action , link , path]
 
 
-pull vcs = undefined
-
-update = undefined
-
-
-execute = undefined
     -- | otherwise = rawSystem "git" ["clone", "https://github.com/mileszs/ack.vim.git", "test/ack"]
 -- check :: (FilePath -> IO Bool) -> FilePath -> IO ()
 
@@ -48,12 +63,12 @@ check dir = do
     -- putStrLn $ dir ++ if result then " does exist" else " does not exist"
 
 
-getSourceControl ::  String -> (Maybe SourceControl, Link, Path)
+getSourceControl ::  String -> (SourceControl, String, String)
 getSourceControl str =
     (vcs, link, path)
     where link = head $ tail words'
           path = last words'
           words' = words str
           key = head words'
-          vcs = lookup key vcMap
+          vcs = vc key 
 

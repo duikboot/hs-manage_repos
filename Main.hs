@@ -11,9 +11,9 @@ main = do
     file <- readFile infile
     let sourcecontrol = map getSourceControl $ lines file
     print sourcecontrol
-    let a = map clone sourcecontrol
-    let abc = map execute sourcecontrol
-    -- print abc
+    mapM_ execute sourcecontrol
+    -- let a = map execute sourcecontrol
+    -- print a
     -- execute the vcs commands
     -- mapM_ system a
     return ()
