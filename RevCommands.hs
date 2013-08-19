@@ -1,11 +1,12 @@
 module RevCommands where
 
-import System.Cmd (rawSystem, system)
-import System.Directory (doesDirectoryExist)
+-- import System.Cmd (rawSystem, system)
+-- import System.Directory (doesDirectoryExist)
 import System.Process
-import Control.Monad
-import Data.Tuple
+-- import Control.Monad
+-- import Data.Tuple
 import Data.Maybe
+import GHC.IO.Exception (ExitCode)
 
 data SourceControl = Git
                    | Mercurial
@@ -18,7 +19,7 @@ type Path = String
 type Link = String
 type Command = String
 
---TODO: Make interface for every vcs
+-- TODO: Make interface for every vcs
 
 vc :: String -> SourceControl
 vc "git" = Git
@@ -47,6 +48,7 @@ updateMap = [(Git, "pull"), (Mercurial, "update")]
 -- execute vcs =
 --     case vcs of
 
+execute ::  [String] -> IO GHC.IO.Exception.ExitCode
 execute commandstring = 
     rawSystem command args
     where command = head commandstring
