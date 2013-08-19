@@ -25,16 +25,19 @@ vc :: String -> SourceControl
 vc "git" = Git
 vc "svn" = Subversion
 vc "hg"  = Mercurial
+vc _     = error "not implemented"
 
 actionMap :: String -> [(SourceControl, Command)]
-actionMap "clone" = cloneMap
+actionMap "clone"  = cloneMap
 actionMap "update" = updateMap
-actionMap "pull" = pullMap
+actionMap "pull"   = pullMap
+actionMap  _       = error "not implemented"
 
 vcrev :: SourceControl -> String
-vcrev Git        = "git"  
-vcrev Subversion = "svn" 
-vcrev Mercurial  = "hg"   
+vcrev Git        = "git"
+vcrev Subversion = "svn"
+vcrev Mercurial  = "hg"
+vcrev _          = error "Not yet implemented"
 
 cloneMap :: [(SourceControl, Command)]
 cloneMap = [(Git, "clone"), (Mercurial, "clone"), (Subversion, "checkout")]
