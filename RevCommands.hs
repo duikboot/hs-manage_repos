@@ -8,6 +8,7 @@ import System.Process
 import Data.Maybe
 import GHC.IO.Exception (ExitCode)
 
+
 data SourceControl = Git
                    | Mercurial
                    | Subversion
@@ -43,8 +44,8 @@ cloneMap :: [(SourceControl, Command)]
 cloneMap = [(Git, "clone"), (Mercurial, "clone"), (Subversion, "checkout")]
 
 pullMap :: [(SourceControl, Command)]
-pullMap = [(Mercurial, "clone")]
 
+pullMap = [(Mercurial, "clone")]
 updateMap :: [(SourceControl, Command)]
 updateMap = [(Git, "pull"), (Mercurial, "update")]
 
