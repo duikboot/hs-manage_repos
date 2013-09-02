@@ -92,4 +92,4 @@ ignoreComments = filter (not . isComment)
 
 isComment :: String -> Bool
 isComment ('#':_) = True
-isComment _ = False
+isComment _       = False
