@@ -15,7 +15,15 @@ data SourceControl = Git
                    | Subversion
                    | Darcs
                    | Bazaar
-                   deriving (Show, Eq)
+                   deriving (Eq, Read)
+
+instance Show SourceControl where
+        show Git        = "Git --> git"
+        show Mercurial  = "Mercurial --> hg"
+        show Subversion = "Subversion --> svn"
+        show Darcs      = "Darcs --> darcs"
+        show Bazaar     = "Bazaar --> bzr"
+        show _          = error "Not yet implemented"
 
 type Path = String
 type Link = String
@@ -45,8 +53,8 @@ cloneMap :: [(SourceControl, Command)]
 cloneMap = [(Git, "clone"), (Mercurial, "clone"), (Subversion, "checkout")]
 
 pullMap :: [(SourceControl, Command)]
-
 pullMap = [(Mercurial, "clone")]
+
 updateMap :: [(SourceControl, Command)]
 updateMap = [(Git, "pull"), (Mercurial, "update")]
 
