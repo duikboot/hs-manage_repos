@@ -7,6 +7,7 @@ import System.Process
 -- import Data.Tuple
 import Data.Maybe
 import GHC.IO.Exception (ExitCode)
+import Data.Char (isSpace)
 
 
 data SourceControl = Git
@@ -81,3 +82,14 @@ getSourceControl str =
            key     = head $ tail words'
            vcs     = vc key
 
+stripLeadingSpaces :: String -> String
+stripLeadingSpaces s
+    | isSpace (head s) = stripLeadingSpaces (tail s)
+    | otherwise = s
+
+ignoreComments :: [String] -> [String]
+ignoreComments = filter (not . isComment)
+
+isComment :: String -> Bool
+isComment ('#':_) = True
+isComment _ = False

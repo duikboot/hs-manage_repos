@@ -9,8 +9,10 @@ main = do
     -- action <- getArgs
     (infile:action:_) <- getArgs
     file <- readFile infile
+    let f = ignoreComments (map stripLeadingSpaces (lines file))
+    print f
     -- let sourcecontrol = map getSourceControl $ map ((++) (action ++ " ")) $ lines file
-    let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) (lines file)
+    let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) f
     print sourcecontrol
     let a = map createCommandString sourcecontrol
     print a
