@@ -15,7 +15,7 @@ main = do
     let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) f
     print sourcecontrol
     let a = map createCommandString sourcecontrol
-    print a
+
     mapM_ execute a
     -- execute the vcs commands
     -- mapM_ system a

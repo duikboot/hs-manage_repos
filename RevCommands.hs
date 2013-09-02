@@ -67,10 +67,10 @@ createCommandString (vcs, action', link, path) =
     -- vcs' : args 
     -- action
     where command = lookup vcs $ actionMap action'
-          vcs' = vcrev vcs
-          action = fromMaybe "echo" command
+          vcs'    = vcrev vcs
+          action  = fromMaybe "echo" command
           -- args = action : link : path : []
-          args = [action , link , path]
+          args    = [action , link , path]
 
 getSourceControl ::  String -> (SourceControl, Command, Path, Link)
 getSourceControl str =
