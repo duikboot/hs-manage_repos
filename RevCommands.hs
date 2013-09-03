@@ -1,10 +1,6 @@
 module RevCommands where
 
--- import System.Cmd (rawSystem, system)
--- import System.Directory (doesDirectoryExist)
 import System.Process
--- import Control.Monad
--- import Data.Tuple
 import Data.Maybe
 import GHC.IO.Exception (ExitCode)
 import Data.Char (isSpace)
@@ -56,8 +52,6 @@ pullMap = [(Mercurial, "clone")]
 updateMap :: [(SourceControl, Command)]
 updateMap = [(Git, "pull"), (Mercurial, "update")]
 
--- execute vcs =
---     case vcs of
 
 execute ::  [String] -> IO GHC.IO.Exception.ExitCode
 execute commandstring = 
@@ -67,15 +61,10 @@ execute commandstring =
 
 createCommandString :: (SourceControl, Command, Link, Path) -> [String]
 createCommandString (vcs, action', link, path) =
-    -- rawSystem vcs' args 
     vcs' : args 
-    -- createProcess (proc vcs' args) 
-    -- vcs' : args 
-    -- action
     where command = lookup vcs $ actionMap action'
           vcs'    = vcrev vcs
           action  = fromMaybe "echo" command
-          -- args = action : link : path : []
           args    = [action , link , path]
 
 getSourceControl :: String -> (SourceControl, Command, Link, Path)

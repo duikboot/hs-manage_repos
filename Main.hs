@@ -1,6 +1,8 @@
 module Main where
 
 import System.Environment (getArgs)
+import System.Directory (doesDirectoryExist)
+import Control.Monad (filterM)
 import RevCommands
 
 main ::  IO ()
@@ -11,8 +13,8 @@ main = do
     -- fillist <- mfilter (not doesDirectoryExist) (map (!! 3) f)
     let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) f
     print sourcecontrol
-    let paths = map getPath sourcecontrol
-    print paths
+    list <- filterM doesDirectoryExist (map getPath sourcecontrol)
+    print list
     let a = map createCommandString sourcecontrol
 
     mapM_ execute a
