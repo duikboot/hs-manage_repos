@@ -5,6 +5,7 @@ import Data.Maybe
 import GHC.IO.Exception (ExitCode)
 import Data.Char (isSpace)
 import Data.List (isPrefixOf)
+import System.Directory (doesDirectoryExist)
 
 
 data SourceControl = Git
@@ -77,8 +78,8 @@ getSourceControl str =
            key     = head $ tail words'
            vcs     = vc key
 
-getPath :: (SourceControl, Command, Link, Path) -> Path
-getPath (_,_,_,x) = x
+getPath ::  (t, t1, t2, FilePath) -> IO Bool
+getPath (_,_,_,x) = doesDirectoryExist x
 
 stripLeadingSpaces :: String -> String
 stripLeadingSpaces s
