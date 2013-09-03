@@ -91,3 +91,10 @@ ignoreComments = filter (not . isComment)
 
 isComment :: String -> Bool
 isComment = isPrefixOf "#" 
+
+isEmptyLine :: String -> Bool
+isEmptyLine [] = True
+isEmptyLine _ = False
+
+stripEmptyLines :: [String] -> [String]
+stripEmptyLines = filter (not . isEmptyLine)

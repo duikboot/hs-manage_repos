@@ -1,8 +1,13 @@
+########################################################################
+#  The modules to clone or update
+#  Lines starting with a "#" are treated as comments
+#  
+#
+########################################################################
+
+
 hg https://bitbucket.org/sjl/gundo.vim  test/gundo
-# git https://github.com/mileszs/ack.vim.git        test/ack
 git https://github.com/mileszs/ack.vim.git        test/ack
-  #git https://github.com/mileszs/ack.vim.git        test/ack
-git https://github.com/mileszs/ack.vim.git                  test/ack
 git https://github.com/sjl/badwolf.git                      test/badwolf
 git https://github.com/kien/ctrlp.vim.git                   test/ctrlp
 git git@github.com:duikboot/vim-snipmate.git                test/db_snipmate
@@ -10,7 +15,6 @@ git git://github.com/tpope/vim-dispatch.git                 test/dispatch
 git https://github.com/vim-scripts/EasyGrep.git             test/easygrep
 git https://github.com/terryma/vim-expand-region            test/expand-region
 git https://github.com/tpope/vim-fugitive.git               test/fugitive
-git https://github.com/sjl/gundo.vim.git                    test/gundo
 git https://github.com/wikitopian/hardmode.git              test/hardmode
 git https://github.com/pbrisbin/html-template-syntax.git    test/html-template-syntax
 git https://github.com/vim-scripts/IndexedSearch.git        test/IndexedSearch

@@ -8,7 +8,7 @@ main ::  IO ()
 main = do
     (infile:action:_) <- getArgs
     file <- readFile infile
-    let f = ignoreComments (map stripLeadingSpaces (lines file))
+    let f = ignoreComments $ map stripLeadingSpaces $ stripEmptyLines (lines file)
     let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) f
     print sourcecontrol
     list <- filterM (liftM not . getPath) sourcecontrol
