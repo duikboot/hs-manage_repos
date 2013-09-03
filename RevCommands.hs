@@ -8,6 +8,7 @@ import System.Process
 import Data.Maybe
 import GHC.IO.Exception (ExitCode)
 import Data.Char (isSpace)
+import Data.List (isPrefixOf)
 
 
 data SourceControl = Git
@@ -23,13 +24,10 @@ instance Show SourceControl where
         show Subversion = "Subversion --> svn"
         show Darcs      = "Darcs --> darcs"
         show Bazaar     = "Bazaar --> bzr"
-        show _          = error "Not yet implemented"
 
 type Path = String
 type Link = String
 type Command = String
-
--- TODO: Make interface for every vcs
 
 vc :: String -> SourceControl
 vc "git" = Git
@@ -80,7 +78,7 @@ createCommandString (vcs, action', link, path) =
           -- args = action : link : path : []
           args    = [action , link , path]
 
-getSourceControl ::  String -> (SourceControl, Command, Path, Link)
+getSourceControl :: String -> (SourceControl, Command, Link, Path)
 getSourceControl str =
     (vcs, action, link, path)
      where words'  = words str
@@ -89,6 +87,9 @@ getSourceControl str =
            link    = last $ init words'
            key     = head $ tail words'
            vcs     = vc key
+
+getPath :: (SourceControl, Command, Link, Path) -> Path
+getPath (_,_,_,x) = x
 
 stripLeadingSpaces :: String -> String
 stripLeadingSpaces s
@@ -99,5 +100,4 @@ ignoreComments :: [String] -> [String]
 ignoreComments = filter (not . isComment)
 
 isComment :: String -> Bool
-isComment ('#':_) = True
-isComment _       = False
+isComment = isPrefixOf "#" 
