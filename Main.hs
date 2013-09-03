@@ -13,7 +13,7 @@ main = do
     print sourcecontrol
     list <- filterM (liftM not . getPath) sourcecontrol
     print list
-    let a = map createCommandString list
-
-    mapM_ execute a
+    if action == "clone"
+        then mapM_ execute (map createCommandString list)
+        else mapM_ execute (map createCommandString sourcecontrol)
     return ()
