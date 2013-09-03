@@ -11,9 +11,10 @@ main = do
     let f = ignoreComments $ map stripLeadingSpaces $ stripEmptyLines (lines file)
     let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) f
     print sourcecontrol
-    list <- filterM (liftM not . getPath) sourcecontrol
-    print list
     if action == "clone"
-        then mapM_ execute (map createCommandString list)
+        then do
+            -- If path exists, don't clone it again
+            list <- filterM (liftM not . getPath) sourcecontrol
+            mapM_ execute (map createCommandString list)
         else mapM_ execute (map createCommandString sourcecontrol)
     return ()
