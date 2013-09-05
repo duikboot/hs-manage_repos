@@ -100,6 +100,7 @@ isEmptyLine _ = False
 stripEmptyLines :: [String] -> [String]
 stripEmptyLines = filter (not . isEmptyLine)
 
+getFullPath ::  FilePath -> IO FilePath
 getFullPath s = do
     homeDir <- getHomeDirectory
     return $ case splitPath s of
