@@ -1,4 +1,3 @@
-
 import Test.HUnit
 import Test.QuickCheck
 
@@ -20,15 +19,11 @@ someNonExistantVcs = "svn https://github.com/mileszs/ack.vim.git test/ack"
 tests ::  Test
 tests = TestList $ map TestCase
   [assertEqual "add tests here" 1 (1::Int)
-  ,assertEqual "test SourceControl"
-                (getSourceControl git)
-                (Just Git, "https://github.com/mileszs/ack.vim.git", "test/ack")
-  ,assertEqual "test SourceControl"
-                (getSourceControl hg)
-                (Just Mercurial, "https://bitbucket.org/sjl/gundo.vim", "test/gundo")
-  ,assertEqual "test SourceControl"
-                (getSourceControl subversion)
-                (Just Subversion, "https://github.com/mileszs/ack.vim.git", "test/ack")
+  ,assertEqual "Test isEmptyLine" (isEmptyLine "") True
+  ,assertEqual "Test not isEmptyLine" (isEmptyLine "Arjen") False
+  ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "  Arjen") "Arjen"
+  ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "Arjen") "Arjen"
+  ,assertEqual "Test ignoreComments" (ignoreComments ["# a", "b", "# c"]) ["b"]
   ]
 
 -- temporary placeholder for some real property tests
