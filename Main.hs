@@ -8,7 +8,7 @@ main ::  IO ()
 main = do
     (infile:action:_) <- getArgs
     file <- readFile infile
-    let f = ignoreComments $ map (dropWhile (== ' ')) $ stripEmptyLines (lines file)
+    let f = stripEverything (lines file)
     let sourcecontrol = map (getSourceControl . (++) (action ++ " ")) f
     print sourcecontrol
     if action == "clone"

@@ -12,47 +12,47 @@ git https://github.com/sjl/badwolf.git                      test/badwolf
 git https://github.com/kien/ctrlp.vim.git                   test/ctrlp
 git git@github.com:duikboot/vim-snipmate.git                test/db_snipmate
 git git://github.com/tpope/vim-dispatch.git                 test/dispatch
-git https://github.com/vim-scripts/EasyGrep.git             test/easygrep
-git https://github.com/terryma/vim-expand-region            test/expand-region
-git https://github.com/tpope/vim-fugitive.git               test/fugitive
-git https://github.com/wikitopian/hardmode.git              test/hardmode
-git https://github.com/pbrisbin/html-template-syntax.git    test/html-template-syntax
-git https://github.com/vim-scripts/IndexedSearch.git        test/IndexedSearch
-git https://github.com/ciaranm/inkpot.git                   test/inkpot
-git https://github.com/nanotech/jellybeans.vim.git          test/jellybeans
-git https://github.com/leshill/vim-json.git                 test/json
-git https://github.com/qstrahl/vim-matchmaker               test/matchmaker
-git https://github.com/tomasr/molokai                       test/molokai
-git https://github.com/ujihisa/neco-ghc.git                 test/neco-ghc
-git https://github.com/Shougo/neocomplcache                 test/neocomplcache
-git https://github.com/vim-scripts/The-NERD-tree.git        test/nerdtree
-git git://github.com/tpope/vim-pathogen.git                 test/pathogen
-git https://github.com/vim-scripts/peaksea.git              test/peaksea
-git https://github.com/vim-scripts/pep8.git                 test/pep8
-git https://github.com/klen/python-mode.git                 test/python-mode
-git https://github.com/mhinz/vim-signify                    test/signify
-git https://github.com/epeli/slimux.git                     test/slimux
-git https://github.com/msanders/snipmate.vim.git            test/snipmate
-git https://github.com/altercation/vim-colors-solarized.git test/solarized
-git https://github.com/tpope/vim-surround.git               test/surround
-git https://github.com/mutewinter/swap-parameters           test/swap-parameters
-git https://github.com/scrooloose/syntastic.git             test/syntastic
-git https://github.com/godlygeek/tabular                    test/tabular
-git https://github.com/majutsushi/tagbar                    test/tagbar
-git https://github.com/vim-scripts/tracwiki.git             test/tracwiki
-git git://github.com/tpope/vim-unimpaired.git               test/unimpaired
-git https://github.com/vim-scripts/vcscommand.vim.git       test/vcscommand
-git https://github.com/dag/vim2hs                           test/vim2hs
-git https://github.com/tpope/vim-commentary.git             test/vim-commentary
-git https://github.com/Lokaltog/vim-easymotion.git          test/vim-easymotion
-git https://github.com/kevinstreit/VIM-Haskell              test/vim-haskell
-git https://github.com/michaeljsmith/vim-indent-object.git  test/vim-indent
-git https://github.com/clones/vim-l9.git                    test/vim-l9
-git https://github.com/tpope/vim-markdown.git               test/vim-markdown
-git https://github.com/thisivan/vim-matchit.git             test/vim-matchit
-git https://github.com/Lokaltog/vim-powerline.git           test/vim-powerline
-git https://github.com/tpope/vim-repeat                     test/vim-repeat
-git https://github.com/kana/vim-scratch.git                 test/vim-scratch
-git https://github.com/vim-scripts/vimwiki                  test/vimwiki
-git https://github.com/nelstrom/vim-visual-star-search      test/visual-star-search
-git https://github.com/vim-scripts/YankRing.vim.git         test/yankring
+# git https://github.com/vim-scripts/EasyGrep.git             test/easygrep
+# git https://github.com/terryma/vim-expand-region            test/expand-region
+# git https://github.com/tpope/vim-fugitive.git               test/fugitive
+# git https://github.com/wikitopian/hardmode.git              test/hardmode
+# git https://github.com/pbrisbin/html-template-syntax.git    test/html-template-syntax
+# git https://github.com/vim-scripts/IndexedSearch.git        test/IndexedSearch
+# git https://github.com/ciaranm/inkpot.git                   test/inkpot
+# git https://github.com/nanotech/jellybeans.vim.git          test/jellybeans
+# git https://github.com/leshill/vim-json.git                 test/json
+# git https://github.com/qstrahl/vim-matchmaker               test/matchmaker
+# git https://github.com/tomasr/molokai                       test/molokai
+# git https://github.com/ujihisa/neco-ghc.git                 test/neco-ghc
+# git https://github.com/Shougo/neocomplcache                 test/neocomplcache
+# git https://github.com/vim-scripts/The-NERD-tree.git        test/nerdtree
+# git git://github.com/tpope/vim-pathogen.git                 test/pathogen
+# git https://github.com/vim-scripts/peaksea.git              test/peaksea
+# git https://github.com/vim-scripts/pep8.git                 test/pep8
+# git https://github.com/klen/python-mode.git                 test/python-mode
+# git https://github.com/mhinz/vim-signify                    test/signify
+# git https://github.com/epeli/slimux.git                     test/slimux
+# git https://github.com/msanders/snipmate.vim.git            test/snipmate
+# git https://github.com/altercation/vim-colors-solarized.git test/solarized
+# git https://github.com/tpope/vim-surround.git               test/surround
+# git https://github.com/mutewinter/swap-parameters           test/swap-parameters
+# git https://github.com/scrooloose/syntastic.git             test/syntastic
+# git https://github.com/godlygeek/tabular                    test/tabular
+# git https://github.com/majutsushi/tagbar                    test/tagbar
+# git https://github.com/vim-scripts/tracwiki.git             test/tracwiki
+# git git://github.com/tpope/vim-unimpaired.git               test/unimpaired
+# git https://github.com/vim-scripts/vcscommand.vim.git       test/vcscommand
+# git https://github.com/dag/vim2hs                           test/vim2hs
+# git https://github.com/tpope/vim-commentary.git             test/vim-commentary
+# git https://github.com/Lokaltog/vim-easymotion.git          test/vim-easymotion
+# git https://github.com/kevinstreit/VIM-Haskell              test/vim-haskell
+# git https://github.com/michaeljsmith/vim-indent-object.git  test/vim-indent
+# git https://github.com/clones/vim-l9.git                    test/vim-l9
+# git https://github.com/tpope/vim-markdown.git               test/vim-markdown
+# git https://github.com/thisivan/vim-matchit.git             test/vim-matchit
+# git https://github.com/Lokaltog/vim-powerline.git           test/vim-powerline
+# git https://github.com/tpope/vim-repeat                     test/vim-repeat
+# git https://github.com/kana/vim-scratch.git                 test/vim-scratch
+# git https://github.com/vim-scripts/vimwiki                  test/vimwiki
+# git https://github.com/nelstrom/vim-visual-star-search      test/visual-star-search
+# git https://github.com/vim-scripts/YankRing.vim.git         test/yankring

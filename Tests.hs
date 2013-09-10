@@ -15,6 +15,8 @@ subversion = "svn https://github.com/mileszs/ack.vim.git test/ack"
 someNonExistantVcs :: String
 someNonExistantVcs = "svn https://github.com/mileszs/ack.vim.git test/ack"
 
+lines' :: [String]
+lines' = ["hg bla", "# git blaa", "  # git test", "  ", "  hg test"]
 
 tests ::  Test
 tests = TestList $ map TestCase
@@ -24,6 +26,7 @@ tests = TestList $ map TestCase
   ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "  Arjen") "Arjen"
   ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "Arjen") "Arjen"
   ,assertEqual "Test ignoreComments" (ignoreComments ["# a", "b", "# c"]) ["b"]
+  ,assertEqual "test stripEverything" (stripEverything lines') ["hg bla", "hg test"]
   ]
 
 -- temporary placeholder for some real property tests

@@ -4,7 +4,7 @@ import System.Process
 import Data.Maybe
 import GHC.IO.Exception (ExitCode)
 import Data.Char (isSpace)
-import Data.List (isPrefixOf)
+import Data.List (isPrefixOf, all)
 import System.Directory (doesDirectoryExist, getHomeDirectory)
 import System.FilePath (joinPath, splitPath)
 
@@ -85,7 +85,7 @@ getPath (_,_,_,x) = doesDirectoryExist x
 stripLeadingSpaces :: String -> String
 stripLeadingSpaces s
     | isSpace (head s) = stripLeadingSpaces (tail s)
-    | otherwise = s
+    | otherwise        = s
 
 ignoreComments :: [String] -> [String]
 ignoreComments = filter (not . isComment)
@@ -95,10 +95,15 @@ isComment = isPrefixOf "#"
 
 isEmptyLine :: String -> Bool
 isEmptyLine [] = True
-isEmptyLine _ = False
+isEmptyLine x
+    | all isSpace x = True
+    | otherwise     = False
 
 stripEmptyLines :: [String] -> [String]
 stripEmptyLines = filter (not . isEmptyLine)
+
+stripEverything :: [String] -> [String]
+stripEverything l = ignoreComments $ map (dropWhile (== ' ')) $ stripEmptyLines l
 
 getFullPath ::  FilePath -> IO FilePath
 getFullPath s = do
