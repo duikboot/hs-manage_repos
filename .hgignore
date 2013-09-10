@@ -10,3 +10,6 @@ vimlog
 .hsenv*
 hsenv.log
 test/*
+build/*
+dist/*
+Session.vim
