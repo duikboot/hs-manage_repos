@@ -22,9 +22,9 @@ tests ::  Test
 tests = TestList $ map TestCase
   [assertEqual "add tests here" 1 (1::Int)
   ,assertEqual "Test isEmptyLine" (isEmptyLine "") True
-  ,assertEqual "Test not isEmptyLine" (isEmptyLine "Arjen") False
-  ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "  Arjen") "Arjen"
-  ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "Arjen") "Arjen"
+  ,assertEqual "Test not isEmptyLine" (isEmptyLine "BlaDi") False
+  ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "  BlaDi") "BlaDi"
+  ,assertEqual "Test stripLeadingSpaces" (stripLeadingSpaces "BlaDi") "BlaDi"
   ,assertEqual "Test ignoreComments" (ignoreComments ["# a", "b", "# c"]) ["b"]
   ,assertEqual "test stripEverything" (stripEverything lines') ["hg bla", "hg test"]
   ]

@@ -4,7 +4,7 @@ import System.Process
 import Data.Maybe
 import GHC.IO.Exception (ExitCode)
 import Data.Char (isSpace)
-import Data.List (isPrefixOf, all)
+import Data.List (isPrefixOf)
 import System.Directory (doesDirectoryExist, getHomeDirectory)
 import System.FilePath (joinPath, splitPath)
 
