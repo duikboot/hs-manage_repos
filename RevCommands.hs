@@ -5,8 +5,8 @@ import Data.Maybe
 import GHC.IO.Exception (ExitCode)
 import Data.Char (isSpace)
 import Data.List (isPrefixOf)
-import System.Directory (doesDirectoryExist, getHomeDirectory)
-import System.FilePath (joinPath, splitPath)
+import System.Directory (doesDirectoryExist) --, getHomeDirectory)
+-- import System.FilePath (joinPath, splitPath)
 
 
 data SourceControl = Git
@@ -105,9 +105,9 @@ stripEmptyLines = filter (not . isEmptyLine)
 stripEverything :: [String] -> [String]
 stripEverything l = ignoreComments $ map (dropWhile (== ' ')) $ stripEmptyLines l
 
-getFullPath ::  FilePath -> IO FilePath
-getFullPath s = do
-    homeDir <- getHomeDirectory
-    return $ case splitPath s of
-        ("~" : t) -> joinPath $ homeDir : t
-        _ -> s
+-- getFullPath ::  FilePath -> IO FilePath
+-- getFullPath s = do
+--     homeDir <- getHomeDirectory
+--     return $ case splitPath s of
+--         ("~" : t) -> joinPath $ homeDir : t
+--         _ -> s
