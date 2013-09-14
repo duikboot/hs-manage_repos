@@ -1,4 +1,5 @@
-= Installation =
+Installation
+============
 
 
 cabal configure --enable-tests
