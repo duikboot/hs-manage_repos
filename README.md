@@ -1,4 +1,4 @@
-Installation
+Manage repositories with clmodules
 ============
 
 This is a beginners attempt of writing a program for managing external repositories.
