@@ -2,6 +2,6 @@ Installation
 ============
 
 
-    $ cabal configure --enable-tests
-    $ cabal build
-    $ cabal test
+    cabal configure --enable-tests
+    cabal build
+    cabal test
