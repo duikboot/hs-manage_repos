@@ -35,7 +35,7 @@ prop_empty c1 = (c1::Int) == c1
 
 runTests ::  IO ()
 runTests = do
-  runTestTT tests
+  _ <- runTestTT tests
   quickCheck prop_empty
 
 -- | For now, main will run our tests.

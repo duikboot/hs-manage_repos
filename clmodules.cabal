@@ -55,6 +55,7 @@ Test-Suite test-bar
     build-depends: base >=4.6 && <4.7, HUnit >=1.2 && <1.3, QuickCheck >=2.6 && <2.7, process >=1.1 && <1.2, directory >=1.2 && <1.3, filepath >=1.3 && <1.4
     -- Base language which the package is written in.
     default-language:    Haskell2010
+    ghc-options: -Wall
 
 
 executable clmodules
