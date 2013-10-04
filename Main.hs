@@ -2,6 +2,8 @@ module Main where
 
 import System.Environment (getArgs)
 import Control.Monad (filterM, liftM)
+import Control.Concurrent.ParallelIO
+
 import RevCommands
 
 main ::  IO ()
@@ -15,6 +17,7 @@ main = do
         then do
             -- If path exists, don't clone it again
             list <- filterM (liftM not . getPath) sourcecontrol
-            mapM_ (execute . createCommandString) list
+            parallel_ $ map (execute . createCommandString) list
+            stopGlobalPool
         else mapM_ (execute . createCommandString) sourcecontrol
     -- return ()
